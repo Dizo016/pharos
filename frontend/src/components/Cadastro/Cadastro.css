@@ -1,0 +1,313 @@
+/* ═══════════════════════════════════════════
+   Pharos — Cadastro
+   ═══════════════════════════════════════════ */
+
+.cad-page {
+  min-height: 100vh;
+  background: var(--obsidian);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* grade de fundo */
+.cad-page-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200, 169, 110, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 169, 110, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Wrapper central ── */
+.cad-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Cabeçalho ── */
+.cad-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cad-back {
+  background: none;
+  border: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--mist);
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 8px;
+  width: fit-content;
+  transition: color 0.2s;
+}
+
+.cad-back:hover { color: var(--amber); }
+
+.cad-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--amber);
+  opacity: 0.75;
+  text-transform: uppercase;
+}
+
+.cad-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 300;
+  color: var(--parchment);
+  line-height: 1.1;
+}
+
+.cad-sub {
+  font-size: 13px;
+  color: var(--mist);
+  line-height: 1.65;
+}
+
+.cad-sub em {
+  color: var(--amber);
+  font-style: normal;
+}
+
+/* ── Formulário ── */
+.cad-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cad-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cad-field label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.cad-field input {
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--ghost);
+  outline: none;
+  width: 100%;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+.cad-field input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(200, 169, 110, 0.08),
+              inset 0 0 0 1px rgba(200, 169, 110, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cad-field input::placeholder {
+  color: rgba(136, 136, 168, 0.4);
+  font-size: 13px;
+}
+
+/* ── Campo senha ── */
+.cad-pass-wrapper {
+  position: relative;
+}
+
+.cad-pass-wrapper input {
+  padding-right: 46px;
+}
+
+.cad-pass-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  color: var(--mist);
+  opacity: 0.6;
+  transition: opacity 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cad-pass-toggle:hover {
+  opacity: 1;
+  color: var(--amber);
+}
+
+/* ── Erro ── */
+.cad-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(192, 57, 43, 0.08);
+  border: 1px solid rgba(192, 57, 43, 0.25);
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: #e07060;
+  animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-6px); }
+  75%       { transform: translateX(6px); }
+}
+
+/* ── Botão principal ── */
+.cad-btn {
+  width: 100%;
+  padding: 15px;
+  background: transparent;
+  color: var(--amber);
+  border: 1px solid var(--amber-dim);
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, color 0.25s, box-shadow 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cad-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cad-btn:hover:not(:disabled)::before { transform: scaleX(1); }
+
+.cad-btn:hover:not(:disabled) {
+  color: var(--obsidian);
+  border-color: var(--amber);
+  box-shadow: 0 0 20px rgba(200, 169, 110, 0.2);
+}
+
+.cad-btn span { position: relative; z-index: 1; }
+
+.cad-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Spinner ── */
+.cad-spinner {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid rgba(200, 169, 110, 0.3);
+  border-top-color: var(--amber);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Link para login ── */
+.cad-login-link {
+  text-align: center;
+  font-size: 13px;
+  color: var(--mist);
+}
+
+.cad-link {
+  background: none;
+  border: none;
+  color: var(--amber);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.cad-link:hover { opacity: 0.75; }
+
+/* ── Tela de sucesso ── */
+.cad-success {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  max-width: 360px;
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.cad-success-icon {
+  font-size: 40px;
+  color: var(--amber);
+  opacity: 0.8;
+}
+
+.cad-success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 300;
+  color: var(--parchment);
+}
+
+.cad-success-sub {
+  font-size: 14px;
+  color: var(--mist);
+  line-height: 1.65;
+}
+
+.cad-success-sub strong {
+  color: var(--amber);
+  font-weight: 400;
+}
+
+.cad-success .cad-btn {
+  margin-top: 8px;
+  width: auto;
+  padding: 14px 40px;
+}

@@ -46,9 +46,14 @@ export default function Landing() {
           <LighthouseIcon />
           <span className="ld-nav-name">Pharos</span>
         </div>
-        <button className="ld-nav-btn" onClick={() => navigate('/login')}>
-          Acessar sistema
-        </button>
+        <div className="ld-nav-actions">
+          <button className="ld-nav-link" onClick={() => navigate('/cadastro')}>
+            Criar conta
+          </button>
+          <button className="ld-nav-btn" onClick={() => navigate('/login')}>
+            Acessar sistema
+          </button>
+        </div>
       </nav>
 
       {/* ── Hero ── */}
@@ -66,6 +71,9 @@ export default function Landing() {
           <div className="ld-hero-actions">
             <button className="ld-btn-primary" onClick={() => navigate('/login')}>
               Entrar no sistema
+            </button>
+            <button className="ld-btn-secondary" onClick={() => navigate('/cadastro')}>
+              Criar conta
             </button>
             <a className="ld-btn-ghost" href="#features">
               Ver funcionalidades

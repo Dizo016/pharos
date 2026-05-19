@@ -451,3 +451,44 @@
   .ld-hero-orb,
   .ld-hero-ring { display: none; }
 }
+
+/* ── Navbar actions ── */
+.ld-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ld-nav-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mist);
+  background: transparent;
+  border: none;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.ld-nav-link:hover { color: var(--ghost); }
+
+/* ── Botão secundário (hero) ── */
+.ld-btn-secondary {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.ld-btn-secondary:hover {
+  border-color: var(--amber-dim);
+  background: rgba(200, 169, 110, 0.05);
+}

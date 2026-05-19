@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './contexts/AuthContext'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 import Landing from './components/Landing/Landing'
 import Login from './components/Login/Login'
+import Cadastro from './components/Cadastro/Cadastro'
 import './App.css'
 
 function HomePlaceholder() {
@@ -21,9 +22,10 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          {/* Pública */}
-          <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
+          {/* Públicas */}
+          <Route path="/"         element={<Landing />} />
+          <Route path="/login"    element={<Login />} />
+          <Route path="/cadastro" element={<Cadastro />} />
 
           {/* Protegidas */}
           <Route element={<PrivateRoute />}>
