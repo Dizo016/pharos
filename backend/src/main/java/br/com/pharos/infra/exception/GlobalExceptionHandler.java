@@ -3,6 +3,7 @@ package br.com.pharos.infra.exception;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -48,6 +49,17 @@ public class GlobalExceptionHandler {
                 ));
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> handleAccessDenied(AccessDeniedException ex) {
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(new ErrorResponse(
+                        HttpStatus.FORBIDDEN.value(),
+                        "Access denied",
+                        Instant.now()
+                ));
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationErrorResponse> handleValidation(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
@@ -77,17 +89,4 @@ public class GlobalExceptionHandler {
                         Instant.now()
                 ));
     }
-
-    public record ErrorResponse(
-            int status,
-            String message,
-            Instant timestamp
-    ) {}
-
-    public record ValidationErrorResponse(
-            int status,
-            String message,
-            Map<String, String> errors,
-            Instant timestamp
-    ) {}
 }
