@@ -108,7 +108,7 @@ export default function Login() {
               <input
                 id="ln-login"
                 type="text"
-                placeholder="seu.login"
+                placeholder="seu login"
                 value={loginValue}
                 onChange={(e) => { setLoginValue(e.target.value); setError('') }}
                 autoComplete="username"

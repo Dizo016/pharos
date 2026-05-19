@@ -16,10 +16,14 @@ export default function App() {
           <Route path="/"         element={<Landing />} />
           <Route path="/login"    element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/explorar" element={<div style={{ color: 'var(--amber)', padding: 48, fontFamily: 'JetBrains Mono, monospace' }}>// explorar — em breve</div>} />
 
-          {/* Protegidas */}
+          {/* Protegidas — Home renderiza sidebar + conteúdo via Outlet */}
           <Route element={<PrivateRoute />}>
-            <Route path="/home" element={<Home />} />
+            <Route path="/home"    element={<Home />} />
+            <Route path="/acervo"  element={<Home />} />
+            <Route path="/membros" element={<Home />} />
+            <Route path="/config"  element={<Home />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />

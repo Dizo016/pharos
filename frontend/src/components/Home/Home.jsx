@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import './Home.css'
 
@@ -99,15 +100,35 @@ const QUICK_ACTIONS = [
 ]
 
 const NAV_ITEMS = [
-  { label: 'Painel',    icon: <IconGrid />,     active: true },
-  { label: 'Acervo',   icon: <IconBook />,     active: false },
-  { label: 'Usuários', icon: <IconUsers />,    active: false },
-  { label: 'Busca',    icon: <IconSearch />,   active: false },
-  { label: 'Config.',  icon: <IconSettings />, active: false },
+  { label: 'Painel',    icon: <IconGrid />,     path: '/home' },
+  { label: 'Acervo',   icon: <IconBook />,     path: '/acervo' },
+  { label: 'Membros',  icon: <IconUsers />,    path: '/membros' },
+  { label: 'Busca',    icon: <IconSearch />,   path: '/explorar' },
+  { label: 'Config.',  icon: <IconSettings />, path: '/config' },
 ]
+
+/* ── Placeholder para páginas em construção ── */
+function PagePlaceholder({ title, tag }) {
+  return (
+    <div className="hm-placeholder">
+      <span className="hm-placeholder-tag">{tag}</span>
+      <h2 className="hm-placeholder-title">{title}</h2>
+      <p className="hm-placeholder-sub">// em construção</p>
+    </div>
+  )
+}
+
+function getSaudacao() {
+  const h = new Date().getHours()
+  if (h >= 5  && h < 12) return 'Bom dia'
+  if (h >= 12 && h < 18) return 'Boa tarde'
+  return 'Boa noite'
+}
 
 export default function Home() {
   const { user, logout } = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
   const [navOpen, setNavOpen] = useState(false)
 
   const displayName = user?.nome ?? user?.name ?? user?.login ?? 'Bibliotecário'
@@ -127,15 +148,24 @@ export default function Home() {
         <div className="hm-sidebar-divider" />
 
         <ul className="hm-nav-list">
-          {NAV_ITEMS.map((item) => (
-            <li key={item.label}>
-              <button className={`hm-nav-item ${item.active ? 'hm-nav-item--active' : ''}`}>
-                <span className="hm-nav-icon">{item.icon}</span>
-                <span className="hm-nav-label">{item.label}</span>
-                {item.active && <span className="hm-nav-pip" />}
-              </button>
-            </li>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const isActive = location.pathname === item.path
+            return (
+              <li key={item.label}>
+                <button
+                  className={`hm-nav-item ${isActive ? 'hm-nav-item--active' : ''}`}
+                  onClick={() => {
+                    navigate(item.path)
+                    setNavOpen(false)
+                  }}
+                >
+                  <span className="hm-nav-icon">{item.icon}</span>
+                  <span className="hm-nav-label">{item.label}</span>
+                  {isActive && <span className="hm-nav-pip" />}
+                </button>
+              </li>
+            )
+          })}
         </ul>
 
         <div className="hm-sidebar-footer">
@@ -175,15 +205,19 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── conteúdo ── */}
+        {/* ── conteúdo roteado ── */}
         <div className="hm-content">
+          {location.pathname === '/acervo'  && <PagePlaceholder title="Acervo"         tag="// book.index" />}
+          {location.pathname === '/membros' && <PagePlaceholder title="Membros"        tag="// member.index" />}
+          {location.pathname === '/config'  && <PagePlaceholder title="Configurações"  tag="// config.index" />}
+          {location.pathname === '/home' && <>
 
           {/* cabeçalho */}
           <header className="hm-header">
             <div>
               <span className="hm-header-tag">// painel · biblioteca</span>
               <h1 className="hm-header-title">
-                Bom dia,<br />
+                {getSaudacao()},<br />
                 <em>{displayName.split(' ')[0]}</em>.
               </h1>
               <p className="hm-header-sub">
@@ -267,6 +301,7 @@ export default function Home() {
             </section>
 
           </div>
+          </>}
         </div>
 
         {/* rodapé */}
