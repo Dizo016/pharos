@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import Landing from './components/Landing/Landing'
 import Login from './components/Login/Login'
 import './App.css'
 
@@ -20,14 +21,16 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          {/* Pública */}
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
 
+          {/* Protegidas */}
           <Route element={<PrivateRoute />}>
             <Route path="/home" element={<HomePlaceholder />} />
           </Route>
 
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
