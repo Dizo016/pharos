@@ -7,7 +7,7 @@ const api = axios.create({
 
 // Injeta token JWT automaticamente quando existir
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('pharos_token')
   if (token) config.headers.Authorization = `Bearer ${token}`
   return config
 })
