@@ -1,0 +1,45 @@
+/* ═══════════════════════════════════════
+   Pharos — App global / placeholder
+   ═══════════════════════════════════════ */
+
+.ph-page {
+  min-height: 100vh;
+  background: var(--obsidian);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px;
+}
+
+.ph-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--mist);
+  opacity: 0.5;
+}
+
+.ph-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--amber);
+}
+
+.ph-btn {
+  margin-top: 8px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--amber);
+  padding: 8px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  width: fit-content;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.ph-btn:hover {
+  border-color: var(--amber-dim);
+  color: var(--amber-glow);
+}
