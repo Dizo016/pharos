@@ -18,7 +18,7 @@ public class JwtService {
     @Value("${jwt.expiration-hours:8}")
     private long expirationHours;
 
-    private static final String ISSUER = "dinacare";
+    private static final String ISSUER = "pharos";
 
     public String generateToken(String login, String role) {
         return JWT.create()

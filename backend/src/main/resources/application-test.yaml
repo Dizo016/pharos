@@ -13,6 +13,6 @@ spring:
   flyway:
     enabled: false
 
-  jwt:
-    secret: test-secret-key-pharos-only-for-tests
-    expiration-hours: 1
+jwt:
+  secret: test-secret-key-pharos-only-for-tests
+  expiration-hours: 1
