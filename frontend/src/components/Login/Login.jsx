@@ -109,7 +109,7 @@ export default function Login() {
                 id="ln-login"
                 type="text"
                 placeholder="seu login"
-                value={loginValue}
+                value={loginValue}  
                 onChange={(e) => { setLoginValue(e.target.value); setError('') }}
                 autoComplete="username"
                 autoFocus
